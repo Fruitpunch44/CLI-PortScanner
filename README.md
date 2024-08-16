@@ -17,9 +17,9 @@ This is a lightweight, multithreaded command-line utility for scanning open port
 ## Installation
 
 1. Clone this repository:
-    git clone https://github.com/your-username/simple-port-scanner.git
+    git clone https://github.com/Fruitpunch44/CLI-PortScanner
 2. Navigate into the directory:
-    cd portscanner_cli
+    cd CLI-PortScanner
 3. Ensure you have Python installed, preferably Python 3.x.
 
 ## Usage
