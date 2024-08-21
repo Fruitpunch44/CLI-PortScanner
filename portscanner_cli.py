@@ -7,13 +7,16 @@ import threading
 # create the function to scan open ports alongside error handling s
 def scan(host, ports, timeout):
     soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    soc.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
     soc.settimeout(timeout)
     try:
         soc.connect((host, ports))
         print(f'{ports} is open on {host}')
+        # append any connection to the empty list
         open_ports.append(ports)
         soc.close()
     except Exception as E:
+        # not really needed 
         print(f'port {ports} {E}')
 
 
@@ -46,9 +49,10 @@ for port in range(args.start_port, args.end_port):
 for thread in threads:
     thread.join()
 
-with open(args.Save_Result, "w") as args.Save_Result:
+# saving the result to afile
+with open(args.Save_Result, "a") as args.Save_Result:
     for port in open_ports:
-        args.Save_Result.write(f'port {port} is open on {args.Host}')
+        args.Save_Result.write(f'port {port} is open on {args.Host} \n')
         print(f'successfully saved as {args.S}')
 
 # things to add
